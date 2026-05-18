@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relógio Digital - Múltiplos Fusos Horários</title>
+    <title>[Nome da Sua Marca] | Velas Aromáticas Premium</title>
+    <meta name="description" content="Descubra nossa coleção de velas artesanais em cerâmica e vidro fosco. Transforme seu ambiente em uma experiência sensorial única.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --color-sand: #EAE3D2;
+            --color-beige: #D8CCA3;
+            --text-main: #4A433A;
+            --text-light: #7A7265;
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(234, 227, 210, 0.6);
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,214 +31,358 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Arial', sans-serif;
-            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
+        /* Animações Suaves */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header & Navegação */
+        header {
+            position: fixed;
+            top: 0;
             width: 100%;
-        }
-
-        .clock-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 1.5rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .clock-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
-        }
-
-        .city-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 10px;
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            cursor: pointer;
         }
 
-        .timezone {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-        }
-
-        .time-display {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #ffd700;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            margin-bottom: 10px;
-        }
-
-        .date-display {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-family: 'Courier New', monospace;
-        }
-
-        .header {
-            position: absolute;
-            top: 30px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .back-link {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 10px 20px;
+        nav a {
+            color: var(--text-main);
             text-decoration: none;
-            border-radius: 50px;
-            transition: background 0.3s ease;
-            font-weight: bold;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
         }
 
-        .back-link:hover {
-            background: rgba(255, 255, 255, 0.3);
+        nav a:hover {
+            color: var(--text-light);
         }
 
+        /* Seção Hero (Banner Principal) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            background: radial-gradient(circle at 80%, #F5EFE6 0%, var(--bg-color) 70%);
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Botões Premium */
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--text-main);
+            color: #FFF;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 0;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 6rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 4rem;
+            letter-spacing: 1px;
+        }
+
+        /* Grid do Catálogo de Produtos */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: transparent;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-image-wrapper {
+            background-color: #F5EFE6;
+            aspect-ratio: 4/5;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image-wrapper {
+            border-color: var(--color-beige);
+        }
+
+        /* Placeholder simulando foto de estúdio com vidro fosco/cerâmica */
+        .product-image-placeholder {
+            width: 70%;
+            height: 70%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(240,230,210,0.3) 100%);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+
+        .product-info h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* Área de Assinantes (Glassmorphism Box) */
+        .subscription-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 4rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #F5EFE6;
+            padding: 4rem 8% 2rem 8%;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-sand);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Botão Flutuante WhatsApp */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #4A433A;
+            color: #FFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-
-            .time-display {
-                font-size: 2.5rem;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            body {
-                padding-top: 150px;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            header { padding: 1rem 4%; }
+            nav { display: none; }
+            section { padding: 4rem 4%; }
         }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-link">← Voltar</a>
+    <a href="https://wa.me/seu-numero" class="whatsapp-btn" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </a>
 
-    <div class="header">
-        <h1>⏰ Relógios do Mundo</h1>
-        <p>Horários em Tempo Real por Fuso Horário</p>
-    </div>
+    <header>
+        <div class="logo">[Sua Marca]</div>
+        <nav>
+            <a href="#colecao">Coleções</a>
+            <a href="#sobre">Nossa Filosofia</a>
+            <a href="#assinatura">Clube de Assinatura</a>
+        </nav>
+    </header>
 
-    <div class="container">
-        <div class="clock-card" id="clock-sao-paulo"></div>
-        <div class="clock-card" id="clock-new-york"></div>
-        <div class="clock-card" id="clock-london"></div>
-        <div class="clock-card" id="clock-dubai"></div>
-        <div class="clock-card" id="clock-tokyo"></div>
-        <div class="clock-card" id="clock-sydney"></div>
-    </div>
+    <main>
+        <section class="hero fade-in">
+            <div class="hero-content">
+                <h1>Transforme seu ambiente em uma experiência sensorial.</h1>
+                <p>Velas botânicas premium feitas à mão em cerâmica artesanal e vidro fosco. Essências puras que acolhem e contam histórias.</p>
+                <a href="#colecao" class="btn-primary">Explorar Coleção</a>
+            </div>
+        </section>
 
-    <script>
-        const clocks = [
-            {
-                id: 'clock-sao-paulo',
-                city: 'São Paulo',
-                timezone: 'America/Sao_Paulo'
-            },
-            {
-                id: 'clock-new-york',
-                city: 'Nova York',
-                timezone: 'America/New_York'
-            },
-            {
-                id: 'clock-london',
-                city: 'Londres',
-                timezone: 'Europe/London'
-            },
-            {
-                id: 'clock-dubai',
-                city: 'Dubai',
-                timezone: 'Asia/Dubai'
-            },
-            {
-                id: 'clock-tokyo',
-                city: 'Tóquio',
-                timezone: 'Asia/Tokyo'
-            },
-            {
-                id: 'clock-sydney',
-                city: 'Sydney',
-                timezone: 'Australia/Sydney'
-            }
-        ];
-
-        function updateClocks() {
-            clocks.forEach(clock => {
-                const element = document.getElementById(clock.id);
+        <section id="colecao">
+            <h2 class="section-title">A Coleção Minimalista</h2>
+            <div class="product-grid">
                 
-                // Obter horário atual no fuso horário específico
-                const now = new Date();
-                const formatter = new Intl.DateTimeFormat('pt-BR', {
-                    timeZone: clock.timezone,
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit'
-                });
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <div class="product-image-placeholder"></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-meta">Copo Vidro Fosco — Alecrim & Sálvia</div>
+                        <h3>Vela Essência No. 01</h3>
+                        <div class="product-price">R$ 139,00</div>
+                    </div>
+                </div>
 
-                const parts = formatter.formatToParts(now);
-                const time = `${parts[6].value}:${parts[4].value}:${parts[2].value}`;
-                const date = `${parts[0].value}/${parts[2].value}/${parts[4].value}`;
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <div class="product-image-placeholder"></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-meta">Cerâmica Artesanal — Baunilha & Madeira</div>
+                        <h3>Vela Essência No. 02</h3>
+                        <div class="product-price">R$ 159,00</div>
+                    </div>
+                </div>
 
-                // Atualizar o elemento
-                element.innerHTML = `
-                    <div class="city-name">${clock.city}</div>
-                    <div class="timezone">${clock.timezone}</div>
-                    <div class="time-display">${time}</div>
-                    <div class="date-display">${date}</div>
-                `;
-            });
-        }
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        <div class="product-image-placeholder"></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-meta">Copo Vidro Fosco — Lavanda Pura</div>
+                        <h3>Vela Essência No. 03</h3>
+                        <div class="product-price">R$ 139,00</div>
+                    </div>
+                </div>
 
-        // Atualizar relógios a cada segundo
-        setInterval(updateClocks, 1000);
-        
-        // Atualizar imediatamente ao carregar
-        updateClocks();
-    </script>
+            </div>
+        </section>
+
+        <section id="sobre" style="background-color: #F5EFE6;">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 class="section-title" style="margin-bottom: 2rem;">Feitas à mão, com tempo e afeto.</h2>
+                <p style="color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                    Cada peça é moldada individualmente. Nossas cerâmicas tornam-se objetos de decoração perenes, enquanto as ceras vegetais queimam de forma limpa, liberando notas olfativas sofisticadas no seu tempo.
+                </p>
+            </div>
+        </section>
+
+        <section id="assinatura">
+            <div class="subscription-box">
+                <h2 class="section-title" style="margin-bottom: 1.5rem; font-size: 2.2rem;">O Clube Sensorial</h2>
+                <p style="color: var(--text-light); margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    Receba mensalmente uma vela com fragrância exclusiva e frete reduzido. Faça parte do nosso manifesto de desaceleração.
+                </p>
+                <a href="#link-checkout-assinatura" class="btn-primary">Assinar Clube</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4 style="font-family: var(--font-serif); margin-bottom: 1rem;">[Sua Marca]</h4>
+                <p style="color: var(--text-light);">Estilo de vida, calma e design.</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Menu</h4>
+                <p><a href="#colecao" style="color: var(--text-light); text-decoration: none;">Produtos</a></p>
+                <p><a href="#assinatura" style="color: var(--text-light); text-decoration: none;">Assinatura</a></p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Políticas</h4>
+                <p><a href="#" style="color: var(--text-light); text-decoration: none;">Privacidade</a></p>
+                <p><a href="#" style="color: var(--text-light); text-decoration: none;">Termos de Uso</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Design por Edimara Ramão &copy; 2026. Todos os direitos reservados.
+        </div>
+    </footer>
 
 </body>
-<
+</html>
